@@ -28,10 +28,11 @@ class _HomePageState extends State<HomePage> {
     firebaseUser = _auth.currentUser;
 
     if (firebaseUser != null) {
-      setState(() {
-        this.user = firebaseUser;
-        this.isloggedin = true;
-      });
+      if (mounted)
+        setState(() {
+          this.user = firebaseUser;
+          this.isloggedin = true;
+        });
     }
   }
 
@@ -52,41 +53,43 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home Page')),
+        appBar: AppBar(title: Text('Home Page')),
         body: Container(
-      child: !isloggedin
-          ? CircularProgressIndicator()
-          : Column(
-              children: <Widget>[
-                SizedBox(height: 40.0),
-                Container(
-                  height: 300,
-                  child: Image(
-                    image: AssetImage("assets/images/start.jpg"),
-                    fit: BoxFit.contain,
-                  ),
+          child: !isloggedin
+              ? CircularProgressIndicator()
+              : Column(
+                  children: <Widget>[
+                    SizedBox(height: 40.0),
+                    Container(
+                      height: 300,
+                      child: Image(
+                        image: AssetImage("assets/images/start.jpg"),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        "Olá, ${user.displayName} você está logado como ${user.email}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Container(
+                      width: 200,
+                      child: ElevatedButton.icon(
+                        icon: Icon(Icons.login_outlined),
+                        label: Text('Sair'),
+                        onPressed: signOut,
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(20))),
+                      ),
+                    )
+                  ],
                 ),
-                Container(
-                  child: Text(
-                    "Olá, ${user.displayName} você está logado como ${user.email}",
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
-                  ),
-                ),
-                SizedBox(height: 30),
-                Container(
-                  width: 200,
-                  child: ElevatedButton.icon(icon: Icon(Icons.login_outlined), label: Text('Sair'),
-                    onPressed: signOut,
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(20))),
-                  ),
-                )
-              ],
-            ),
-    ));
+        ));
   }
 }

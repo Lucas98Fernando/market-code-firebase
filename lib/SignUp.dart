@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -98,7 +99,7 @@ class _SignUpState extends State<SignUp> {
             Container(
               child: Text(
                 'Faça o seu cadastro',
-                style: TextStyle(color: Colors.black38),
+                style: TextStyle(color: Colors.black38, fontSize: 16),
               ),
             ),
             Container(
@@ -128,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                               if (input.isEmpty) return 'Informe o seu e-mail';
                             },
                             decoration: InputDecoration(
-                                labelText: 'Email',
+                                labelText: 'E-mail',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 prefixIcon: Icon(Icons.email)),
@@ -142,7 +143,7 @@ class _SignUpState extends State<SignUp> {
                                 return 'A senha deve conter no mínimo 6 caracteres';
                             },
                             decoration: InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Senha',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20)),
                               prefixIcon: Icon(Icons.lock),
@@ -171,10 +172,23 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
             ),
-            GestureDetector(
-              child: Text('Já possui conta ? Entrar'),
-              onTap: navigateToLogin,
-            )
+            Container(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Já possui conta ? ',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black45,
+                            fontFamily: 'Poppins'),
+                        children: <TextSpan>[
+                  TextSpan(
+                      text: 'Entrar',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          navigateToLogin();
+                        },
+                      style: TextStyle(color: Colors.blue))
+                ])))
           ],
         ),
       ),

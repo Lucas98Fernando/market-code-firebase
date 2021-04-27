@@ -97,20 +97,22 @@ class _StartState extends State<Start> {
               SizedBox(height: 30.0),
               Container(
                 width: 280,
-                 height: 45,
-                 child: ElevatedButton(
-                      onPressed: navigateToLogin,
-                   child: Row(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: <Widget>[
-                       Text('COMEÇAR',  style: TextStyle(fontSize: 18)),
-                       Icon(Icons.arrow_forward)
-                     ],
-                   ),
-                      style: ElevatedButton.styleFrom(
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(20))),
-                      ),
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: navigateToLogin,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text('COMEÇAR',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700)),
+                      Icon(Icons.arrow_forward)
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(20))),
+                ),
               ),
               SizedBox(height: 20.0),
               /*

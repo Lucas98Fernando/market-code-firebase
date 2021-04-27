@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'SignUp.dart';
@@ -92,7 +93,7 @@ class _LoginState extends State<Login> {
             Container(
               child: Text(
                 'Faça o seu login',
-                style: TextStyle(color: Colors.black38),
+                style: TextStyle(color: Colors.black38, fontSize: 16),
               ),
             ),
             Container(
@@ -109,7 +110,8 @@ class _LoginState extends State<Login> {
                             },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20)),
                                 labelText: 'E-mail',
                                 prefixIcon: Icon(Icons.email)),
                             onSaved: (input) => _email = input),
@@ -122,7 +124,8 @@ class _LoginState extends State<Login> {
                                 return 'A senha deve conter no mínimo 6 caracteres';
                             },
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20)),
                               labelText: 'Senha',
                               prefixIcon: Icon(Icons.lock),
                             ),
@@ -150,10 +153,23 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            GestureDetector(
-              child: Text('Criar conta ?'),
-              onTap: navigateToSignUp,
-            )
+            Container(
+                child: RichText(
+                    text: TextSpan(
+                        text: 'Ainda não possui conta ? ',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black45,
+                            fontFamily: 'Poppins'),
+                        children: <TextSpan>[
+                  TextSpan(
+                      text: 'Cadastre-se',
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          navigateToSignUp();
+                        },
+                      style: TextStyle(color: Colors.blue))
+                ])))
           ],
         ),
       ),
