@@ -4,6 +4,7 @@ import 'package:market_code/Start.dart';
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue),
+      theme: ThemeData(
+          primaryColor: Colors.blue,
+          textTheme:
+              GoogleFonts.montserratTextTheme(Theme.of(context).textTheme)),
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       routes: <String, WidgetBuilder>{

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Start extends StatefulWidget {
@@ -72,25 +73,26 @@ class _StartState extends State<Start> {
                 child: RichText(
                     text: TextSpan(
                         text: 'Bem-vindo ao ',
-                        style: TextStyle(
-                            fontSize: 22.0,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 20.0,
                             fontWeight: FontWeight.w600,
                             color: Colors.black87),
                         children: <TextSpan>[
                       TextSpan(
-                          text: 'Market Code',
-                          style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue))
+                        text: 'Market Code',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue),
+                      )
                     ])),
               ),
               SizedBox(height: 10.0),
               Text(
-                'Gaste menos tempo no supermercado para encontrar o que deseja',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: Colors.black45),
-              ),
+                  'Gaste menos tempo no supermercado para encontrar o que deseja',
+                  textAlign: TextAlign.center,
+                  style:
+                      GoogleFonts.poppins(fontSize: 14, color: Colors.black45)),
               SizedBox(height: 30.0),
               Container(
                 width: 280,

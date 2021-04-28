@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:authentification/Start.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -67,12 +68,14 @@ class _HomePageState extends State<HomePage> {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      Container(
-                        child: Text(
-                          "Olá, ${user.displayName} você está logado como ${user.email}",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          child: Text(
+                              "Olá, ${user.displayName}! Você está logado como ${user.email}",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 18.0, fontWeight: FontWeight.w500)),
                         ),
                       ),
                       SizedBox(height: 30),
