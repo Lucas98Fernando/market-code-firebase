@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'SignUp.dart';
 
 class Login extends StatefulWidget {
@@ -14,6 +17,29 @@ class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _email, _password;
+
+  Future<UserCredential> googleSignIn() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    GoogleSignInAccount googleUser = await googleSignIn.signIn();
+    if (googleUser != null) {
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      if (googleAuth.idToken != null && googleAuth.accessToken != null) {
+        final AuthCredential credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+        final UserCredential user =
+            await _auth.signInWithCredential(credential);
+
+        await Navigator.pushReplacementNamed(context, "/");
+
+        return user;
+      } else {
+        throw StateError('Missing Google Auth Token');
+      }
+    } else
+      throw StateError('Sign in Aborted');
+  }
 
   checkAuthentification() async {
     _auth.authStateChanges().listen((user) {
@@ -104,9 +130,24 @@ class _LoginState extends State<Login> {
                 child: Form(
                   key: _formKey,
                   child: Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.only(
+                        top: 20, left: 30, right: 30, bottom: 30),
                     child: Column(
                       children: <Widget>[
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 45,
+                          child: SignInButton(Buttons.Google,
+                              text: "Entrar com o Google",
+                              onPressed: googleSignIn,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(20))),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          child: Text('OU'),
+                        ),
+                        SizedBox(height: 20),
                         Container(
                           child: TextFormField(
                               // ignore: missing_return
