@@ -57,7 +57,7 @@ class _SignUpState extends State<SignUp> {
             title: Text('ERROR'),
             content: Text(errormessage),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -111,6 +111,7 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       Container(
                         child: TextFormField(
+                            // ignore: missing_return
                             validator: (input) {
                               if (input.isEmpty) return 'Informe o seu nome';
                             },
@@ -118,13 +119,14 @@ class _SignUpState extends State<SignUp> {
                               labelText: 'Nome completo',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              prefixIcon: Icon(Icons.person),
+                              prefixIcon: Icon(Icons.person_outline),
                             ),
                             onSaved: (input) => _name = input),
                       ),
                       SizedBox(height: 20),
                       Container(
                         child: TextFormField(
+                            // ignore: missing_return
                             validator: (input) {
                               if (input.isEmpty) return 'Informe o seu e-mail';
                             },
@@ -132,12 +134,13 @@ class _SignUpState extends State<SignUp> {
                                 labelText: 'E-mail',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
-                                prefixIcon: Icon(Icons.email)),
+                                prefixIcon: Icon(Icons.email_outlined)),
                             onSaved: (input) => _email = input),
                       ),
                       SizedBox(height: 20),
                       Container(
                         child: TextFormField(
+                            // ignore: missing_return
                             validator: (input) {
                               if (input.length < 6)
                                 return 'A senha deve conter no mínimo 6 caracteres';
@@ -146,7 +149,7 @@ class _SignUpState extends State<SignUp> {
                               labelText: 'Senha',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: Icon(Icons.lock_outline),
                             ),
                             obscureText: true,
                             onSaved: (input) => _password = input),

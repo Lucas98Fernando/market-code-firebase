@@ -105,6 +105,7 @@ class _LoginState extends State<Login> {
                     children: <Widget>[
                       Container(
                         child: TextFormField(
+                            // ignore: missing_return
                             validator: (input) {
                               if (input.isEmpty) return 'Informe o seu e-mail';
                             },
@@ -113,12 +114,13 @@ class _LoginState extends State<Login> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 labelText: 'E-mail',
-                                prefixIcon: Icon(Icons.email)),
+                                prefixIcon: Icon(Icons.email_outlined)),
                             onSaved: (input) => _email = input),
                       ),
                       SizedBox(height: 20),
                       Container(
                         child: TextFormField(
+                            // ignore: missing_return
                             validator: (input) {
                               if (input.length < 6)
                                 return 'A senha deve conter no mínimo 6 caracteres';
@@ -127,7 +129,7 @@ class _LoginState extends State<Login> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20)),
                               labelText: 'Senha',
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: Icon(Icons.lock_outline),
                             ),
                             obscureText: true,
                             onSaved: (input) => _password = input),
