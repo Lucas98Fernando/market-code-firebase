@@ -2,7 +2,7 @@ import 'package:market_code/Login.dart';
 import 'package:market_code/SignUp.dart';
 import 'package:market_code/Start.dart';
 import 'package:flutter/material.dart';
-import 'HomePage.dart';
+import 'pages/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 

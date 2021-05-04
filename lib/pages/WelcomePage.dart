@@ -4,12 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:authentification/Start.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class HomePage extends StatefulWidget {
+class WelcomePage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WelcomePageState extends State<WelcomePage>
+    with AutomaticKeepAliveClientMixin {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User user;
   bool isloggedin = false;
@@ -52,8 +53,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-        appBar: AppBar(title: Text('Home Page')),
+        appBar: AppBar(
+          title: Text('Home Page'),
+          centerTitle: true,
+        ),
         body: Center(
           child: Container(
             child: !isloggedin
@@ -64,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         height: 300,
                         child: Image(
-                          image: AssetImage("assets/images/start.jpg"),
+                          image: AssetImage("assets/images/welcome.png"),
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -96,4 +101,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ));
   }
+
+  // Método para manter a página de onde parou
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
